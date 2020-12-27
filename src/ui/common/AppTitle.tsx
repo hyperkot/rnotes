@@ -10,6 +10,7 @@ export interface AppTitleProps {
     font-size: 20px;
     padding: 4px;
     border-bottom: 1px solid #003;
+    user-select: none; 
 `
 export class AppTitle extends React.Component<AppTitleProps> {
     render() {
