@@ -8,7 +8,8 @@ const RegularTab = styled.div`
     margin: 2px;
     padding: 2px;
     border: 1px solid black;
-    user-select: none; 
+    user-select: none;
+    cursor: pointer;
 
     &:hover {
         background-color: #459;
@@ -19,7 +20,8 @@ const SelectedTab = styled.div`
     background-color: #696;
     color: blue;
     font-weight: bold;
-    user-select: none; 
+    user-select: none;
+    cursor: default;
 
     margin: 2px;
     padding: 2px;
