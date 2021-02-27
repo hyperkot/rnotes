@@ -3,20 +3,34 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+
+  mode: "development",
+
   // Set debugging source maps to be "inline" for
   // simplicity and ease of use
-  devtool: "inline-source-map",
+  // devtool: "inline-source-map",
+
+  devtool: "cheap-source-map",
 
   // The application entry point
-  entry: "./src/index.tsx",
+  entry: {
+    index: "./src/index.tsx"
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
 
   // Where to compile the bundle
   // By default the output directory is `dist`
-  output: {
-    filename: "bundle.js"
-  },
+  //output: {
+  //  filename: "bundle.js" // Not compatible with optimizations
+  //},
 
   // Supported file loaders
   module: {
@@ -45,7 +59,12 @@ module.exports = {
       })
     ]
   },
+
   plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disable",
+      openAnalyzer: "false"
+    }),
     new HtmlWebpackPlugin({
       template: "index.ejs",
       minify: false
